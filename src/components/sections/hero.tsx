@@ -59,7 +59,7 @@ const stats = [
 
 export function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center">
+    <section id="home" className="relative min-h-screen flex items-center pt-16 md:pt-20">
       {/* Background Image with Gradient Overlay */}
       <div className="absolute inset-0 z-0">
         <motion.div
@@ -79,7 +79,7 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 z-20">
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
           variants={containerVariants}
@@ -175,7 +175,7 @@ export function Hero() {
           {/* Right Column - Decorative Element */}
           <motion.div
             variants={itemVariants}
-            className="hidden lg:block lg:justify-self-end xl:justify-self-center"
+            className="relative z-10 flex justify-center lg:justify-self-end xl:justify-self-center"
           >
             <div className="relative w-fit">
               <motion.div
@@ -191,7 +191,7 @@ export function Hero() {
                 <motion.img
                   src="/images/logistic.jpg"
                   alt="Logistics Illustration"
-                  className="w-full h-auto md:w-[400px] lg:w-[500px] xl:w-[600px] rounded-xl object-cover"
+                  className="w-[250px] h-auto sm:w-[280px] md:w-[320px] lg:w-[400px] xl:w-[480px] rounded-xl object-cover"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.5 }}

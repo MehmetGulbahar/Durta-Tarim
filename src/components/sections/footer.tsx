@@ -7,12 +7,12 @@ import { Facebook, Instagram } from "lucide-react";
 const socialLinks = [
   {
     name: "Facebook",
-    href: "https://facebook.com",
+    href: "https://www.facebook.com/share/18KKKeBFfc/",
     icon: Facebook,
   },
   {
     name: "Instagram",
-    href: "https://instagram.com",
+    href: "#",
     icon: Instagram,
   },
 ];
@@ -37,7 +37,7 @@ export function Footer() {
             viewport={{ once: true }}
             className="col-span-1 md:col-span-2"
           >
-            <h3 className="text-xl font-bold mb-4">Durta Gıda</h3>
+            <h3 className="text-xl font-bold mb-4">Durta Tarım</h3>
             <p className="mb-4">
               Taze ürün taşımacılığı için profesyonel lojistik çözümler.
               Güvenilir ve verimli teslimat hizmetleri.
