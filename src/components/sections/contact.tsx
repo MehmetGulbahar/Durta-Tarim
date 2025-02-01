@@ -1,36 +1,14 @@
 "use client"
 
-import { useState } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Phone, Mail, MapPin, Send, MessageCircle } from "lucide-react"
-import { sendEmail } from "@/lib/emailjs"
+import { useForm, ValidationError } from '@formspree/react'
 
 export function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  })
-
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
-    "idle"
-  )
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setStatus("loading")
-
-    try {
-      await sendEmail(formData)
-      setStatus("success")
-      setFormData({ name: "", email: "", message: "" })
-    } catch (error) {
-      setStatus("error")
-    }
-  }
+  const [state, handleSubmit] = useForm("xeoekkra")
 
   const contactInfo = [
     {
@@ -119,81 +97,75 @@ export function Contact() {
             viewport={{ once: true }}
             className="bg-white rounded-2xl shadow-lg shadow-gray-100/50 p-8"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    İsim
-                  </label>
-                  <Input
-                    id="name"
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData((prev) => ({ ...prev, name: e.target.value }))
-                    }
-                    required
-                    placeholder="Adınız Soyadınız"
-                    className="w-full"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
-                    E-posta
-                  </label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData((prev) => ({ ...prev, email: e.target.value }))
-                    }
-                    required
-                    placeholder="ornek@email.com"
-                    className="w-full"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">
-                    Mesaj
-                  </label>
-                  <Textarea
-                    id="message"
-                    value={formData.message}
-                    onChange={(e) =>
-                      setFormData((prev) => ({ ...prev, message: e.target.value }))
-                    }
-                    required
-                    placeholder="Mesajınızı buraya yazın..."
-                    className="w-full min-h-[150px]"
-                  />
-                </div>
+            {state.succeeded ? (
+              <div className="text-center p-8">
+                <h3 className="text-2xl font-semibold text-primary mb-4">
+                  Teşekkürler!
+                </h3>
+                <p className="text-gray-600">
+                  Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağız.
+                </p>
               </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-4">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium mb-2">
+                      İsim
+                    </label>
+                    <Input
+                      id="name"
+                      name="name"
+                      required
+                      placeholder="Adınız Soyadınız"
+                      className="w-full"
+                    />
+                    <ValidationError prefix="Name" field="name" errors={state.errors} />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium mb-2">
+                      E-posta
+                    </label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      placeholder="ornek@email.com"
+                      className="w-full"
+                    />
+                    <ValidationError prefix="Email" field="email" errors={state.errors} />
+                  </div>
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium mb-2">
+                      Mesaj
+                    </label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      required
+                      placeholder="Mesajınızı buraya yazın..."
+                      className="w-full min-h-[150px]"
+                    />
+                    <ValidationError prefix="Message" field="message" errors={state.errors} />
+                  </div>
+                </div>
 
-              <Button
-                type="submit"
-                className="w-full h-12 text-base font-medium"
-                disabled={status === "loading"}
-              >
-                {status === "loading" ? (
-                  "Gönderiliyor..."
-                ) : (
-                  <>
-                    Gönder <Send className="ml-2 h-4 w-4" />
-                  </>
-                )}
-              </Button>
-
-              {status === "success" && (
-                <p className="text-green-600 text-center">
-                  Mesajınız başarıyla gönderildi!
-                </p>
-              )}
-              {status === "error" && (
-                <p className="text-red-600 text-center">
-                  Bir hata oluştu. Lütfen tekrar deneyin.
-                </p>
-              )}
-            </form>
+                <Button
+                  type="submit"
+                  className="w-full h-12 text-base font-medium"
+                  disabled={state.submitting}
+                >
+                  {state.submitting ? (
+                    "Gönderiliyor..."
+                  ) : (
+                    <>
+                      Gönder <Send className="ml-2 h-4 w-4" />
+                    </>
+                  )}
+                </Button>
+              </form>
+            )}
           </motion.div>
         </div>
       </div>
