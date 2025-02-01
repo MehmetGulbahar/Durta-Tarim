@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Phone, Mail, MapPin, Send } from "lucide-react"
+import { Phone, Mail, MapPin, Send, MessageCircle } from "lucide-react"
 import { sendEmail } from "@/lib/emailjs"
 
 export function Contact() {
@@ -33,6 +33,12 @@ export function Contact() {
   }
 
   const contactInfo = [
+    {
+      icon: MessageCircle,
+      title: "WhatsApp",
+      details: "0532 462 60 41",
+      href: "https://wa.me/905324626041",
+    },
     {
       icon: Phone,
       title: "Telefon",
