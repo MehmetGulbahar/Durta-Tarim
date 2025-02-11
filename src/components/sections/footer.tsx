@@ -99,7 +99,7 @@ export function Footer() {
                   href="tel:+1234567890"
                   className="hover:text-white transition-colors"
                 >
-                  0532 462 60 41
+                  0532 464 60 41
                 </a>
               </p>
               <p>

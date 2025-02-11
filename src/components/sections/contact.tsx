@@ -14,14 +14,14 @@ export function Contact() {
     {
       icon: MessageCircle,
       title: "WhatsApp",
-      details: "0532 462 60 41",
-      href: "https://wa.me/905324626041",
+      details: "0532 464 60 41",
+      href: "https://wa.me/905324646041",
     },
     {
       icon: Phone,
       title: "Telefon",
-      details: "0532 462 60 41",
-      href: "tel:+905324626041",
+      details: "0532 464 60 41",
+      href: "tel:+905324646041",
     },
     {
       icon: Mail,
@@ -108,9 +108,9 @@ export function Contact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-4">
+                <div className="space-y-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                       İsim
                     </label>
                     <Input
@@ -118,12 +118,12 @@ export function Contact() {
                       name="name"
                       required
                       placeholder="Adınız Soyadınız"
-                      className="w-full"
+                      className="w-full px-4 py-3 rounded-xl border-gray-200 focus:border-primary focus:ring-primary transition-colors duration-200 bg-gray-50/50"
                     />
-                    <ValidationError prefix="Name" field="name" errors={state.errors} />
+                    <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-500 text-sm mt-1" />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                       E-posta
                     </label>
                     <Input
@@ -132,12 +132,12 @@ export function Contact() {
                       type="email"
                       required
                       placeholder="ornek@email.com"
-                      className="w-full"
+                      className="w-full px-4 py-3 rounded-xl border-gray-200 focus:border-primary focus:ring-primary transition-colors duration-200 bg-gray-50/50"
                     />
-                    <ValidationError prefix="Email" field="email" errors={state.errors} />
+                    <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-500 text-sm mt-1" />
                   </div>
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium mb-2">
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                       Mesaj
                     </label>
                     <Textarea
@@ -145,23 +145,27 @@ export function Contact() {
                       name="message"
                       required
                       placeholder="Mesajınızı buraya yazın..."
-                      className="w-full min-h-[150px]"
+                      className="w-full px-4 py-3 rounded-xl border-gray-200 focus:border-primary focus:ring-primary transition-colors duration-200 bg-gray-50/50 min-h-[150px] resize-y"
                     />
-                    <ValidationError prefix="Message" field="message" errors={state.errors} />
+                    <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-500 text-sm mt-1" />
                   </div>
                 </div>
 
                 <Button
                   type="submit"
-                  className="w-full h-12 text-base font-medium"
+                  className="w-full h-12 text-base font-medium bg-primary hover:bg-primary/90 text-white rounded-xl transition-all duration-200 transform hover:scale-[1.02]"
                   disabled={state.submitting}
                 >
                   {state.submitting ? (
-                    "Gönderiliyor..."
+                    <div className="flex items-center justify-center space-x-2">
+                      <div className="w-5 h-5 border-t-2 border-white rounded-full animate-spin" />
+                      <span>Gönderiliyor...</span>
+                    </div>
                   ) : (
-                    <>
-                      Gönder <Send className="ml-2 h-4 w-4" />
-                    </>
+                    <div className="flex items-center justify-center space-x-2">
+                      <span>Gönder</span>
+                      <Send className="w-5 h-5" />
+                    </div>
                   )}
                 </Button>
               </form>
