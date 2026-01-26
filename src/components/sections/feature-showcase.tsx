@@ -32,7 +32,7 @@ export function FeatureShowcase() {
           >
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl shadow-gray-200/50">
               <Image
-                src="/images/gallery/galeri15.jpg"
+                src="/images/about.png"
                 alt="Modern Lojistik"
                 fill
                 className="object-cover"
