@@ -33,7 +33,7 @@ const stats = [
   },
   {
     icon: Timer,
-    value: "15+",
+    value: "20+",
     label: "Yıllık Tecrübe",
   },
   {

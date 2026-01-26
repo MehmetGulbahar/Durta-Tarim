@@ -5,6 +5,7 @@ import { Features } from "@/components/sections/features"
 import { FeatureShowcase } from "@/components/sections/feature-showcase"
 import { Gallery } from "@/components/sections/gallery"
 import { WhyUs } from "@/components/sections/why-us"
+import { Press } from "@/components/sections/press"
 import { Contact } from "@/components/sections/contact"
 import { Map } from "@/components/sections/map"
 import { Footer } from "@/components/sections/footer"
@@ -19,6 +20,7 @@ export default function Home() {
       <Features />
       <Gallery />
       <WhyUs />
+      <Press />
       <Contact />
       <Map />
       <Footer />

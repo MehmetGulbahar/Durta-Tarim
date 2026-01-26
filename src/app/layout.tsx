@@ -9,11 +9,16 @@ import "swiper/css/pagination"
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Durta Gıda",
-  description: "Professional logistics solutions for fresh produce transportation",
+  title: "Durta Meyve Sebze A.Ş.",
+  description: "Sektörün Öncüsü - Taze meyve ve sebze tedarik zinciri çözümleri",
   manifest: "/manifest.json",
   icons: {
-    apple: "/icons/icon-192x192.png",
+    icon: [
+      { url: "/images/logo.png", type: "image/png" },
+    ],
+    apple: [
+      { url: "/images/logo.png", type: "image/png" },
+    ],
   },
 };
 
@@ -30,10 +35,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="tr" className="scroll-smooth">
       <head>
         <link rel="manifest" href="/manifest.json" />
-        <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+        <link rel="icon" href="/images/logo.png" />
+        <link rel="apple-touch-icon" href="/images/logo.png" />
       </head>
       <body className={cn(inter.className, "min-h-screen bg-background")}>
         {children}
