@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
+import { Analytics } from "@vercel/analytics/next"
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -43,7 +45,8 @@ export default function RootLayout({
       </head>
       <body className={cn(inter.className, "min-h-screen bg-background")}>
         {children}
-      </body>
-    </html>
+        <Analytics />
+        </body>
+      </html>
   );
 }
