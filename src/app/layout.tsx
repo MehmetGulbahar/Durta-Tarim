@@ -6,6 +6,7 @@ import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
 import { Analytics } from "@vercel/analytics/next"
+import { FloatingContact } from "@/components/floating-contact"
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -37,14 +38,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="tr" className="scroll-smooth">
+    <html lang="tr" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/images/logo.png" />
         <link rel="apple-touch-icon" href="/images/logo.png" />
       </head>
-      <body className={cn(inter.className, "min-h-screen bg-background")}>
+      <body className={cn(inter.className, "min-h-screen bg-background")} suppressHydrationWarning>
         {children}
+        <FloatingContact />
         <Analytics />
         </body>
       </html>

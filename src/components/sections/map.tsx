@@ -104,11 +104,11 @@ export function Map() {
                 </div>
                 <div className="flex items-center gap-3">
                   <Phone className="w-4 h-4 text-primary flex-shrink-0" />
-                  <p className="text-gray-600">+90 531 669 09 78</p>
+                  <p className="text-gray-600">+90 532 464 60 41</p>
                 </div>
                 <div className="flex items-center gap-3">
                   <Clock className="w-4 h-4 text-primary flex-shrink-0" />
-                  <p className="text-gray-600">Pazartesi - Cumartesi: 06:00 - 20:00</p>
+                  <p className="text-gray-600">Pazartesi - Cumartesi: 01:00 - 12:00</p>
                 </div>
               </div>
               
@@ -145,7 +145,7 @@ export function Map() {
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-primary flex-shrink-0" />
-                <p className="text-gray-600 text-xs">+90 531 669 09 78</p>
+                <p className="text-gray-600 text-xs">+90 532 464 60 41</p>
               </div>
             </div>
             
