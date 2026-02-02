@@ -9,6 +9,17 @@ const pressItems = [
   {
     id: "1",
     type: "video",
+    title: "Güncel Piyasa Programı",
+    description: "Beyaz TV Güncel Piyasa programına konuk olduk, sektördeki gelişmeleri ve Durta Tarım'ın vizyonunu anlattık",
+    thumbnail: "/images/press/durtatmbnail.png",
+    videoSrc: "https://drive.google.com/file/d/1GtQ1XwnqVY-v_fO1f8V0MgrqUGlI7maG/preview",
+    isGoogleDrive: true,
+    source: "Beyaz TV - Güncel Piyasa",
+    date: "2026",
+  },
+  {
+    id: "2",
+    type: "video",
     title: "Ekonomi Dünyası Röportajı",
     description: "Durta Tarım'ın sektördeki başarı hikayesi ve gelecek vizyonu hakkında özel röportaj",
     thumbnail: "/images/press/roportajtumbnail.png",
@@ -17,7 +28,7 @@ const pressItems = [
     date: "2025",
   },
   {
-    id: "2",
+    id: "3",
     type: "image",
     title: "Yılın Tedarikçisi Ödülü",
     description: "Ege Bölgesi'nin en başarılı yaş meyve sebze tedarikçisi ödülünü aldık",
@@ -26,7 +37,7 @@ const pressItems = [
     date: "2025",
   },
   {
-    id: "3",
+    id: "4",
     type: "video",
     title: "Ödül Töreni",
     description: "Yılın En İyi Tedarikçisi ödülünü alırken",
@@ -38,11 +49,11 @@ const pressItems = [
 ];
 
 export function Press() {
-  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const [activeVideo, setActiveVideo] = useState<{src: string; isGoogleDrive?: boolean} | null>(null);
   const [activeImage, setActiveImage] = useState<{src: string; title: string} | null>(null);
 
   return (
-    <section id="press" className="py-24 md:py-32 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+    <section id="press" className="py-24 md:py-32 bg-gradient-to-b to-white relative overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[300px] bg-primary/5 rounded-full blur-[120px] -translate-y-1/2" />
       <div className="absolute bottom-0 right-1/4 w-[400px] h-[200px] bg-primary/5 rounded-full blur-[100px] translate-y-1/2" />
@@ -85,7 +96,7 @@ export function Press() {
                 className="relative h-52 overflow-hidden cursor-pointer"
                 onClick={() => {
                   if (item.type === "video" && item.videoSrc) {
-                    setActiveVideo(item.videoSrc);
+                    setActiveVideo({ src: item.videoSrc, isGoogleDrive: item.isGoogleDrive });
                   } else if (item.type === "image") {
                     setActiveImage({ src: item.thumbnail, title: item.title });
                   }
@@ -161,7 +172,7 @@ export function Press() {
                   <span className="text-xs text-gray-400">{item.date}</span>
                   {item.type === "video" && item.videoSrc && (
                     <button
-                      onClick={() => setActiveVideo(item.videoSrc!)}
+                      onClick={() => setActiveVideo({ src: item.videoSrc!, isGoogleDrive: item.isGoogleDrive })}
                       className="flex items-center gap-1.5 text-primary text-sm font-medium hover:underline"
                     >
                       <Play className="w-4 h-4" />
@@ -214,14 +225,23 @@ export function Press() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl">
-              <video
-                src={activeVideo}
-                controls
-                autoPlay
-                className="w-full aspect-video"
-              >
-                Tarayıcınız video oynatmayı desteklemiyor.
-              </video>
+              {activeVideo.isGoogleDrive ? (
+                <iframe
+                  src={activeVideo.src}
+                  className="w-full aspect-video"
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                />
+              ) : (
+                <video
+                  src={activeVideo.src}
+                  controls
+                  autoPlay
+                  className="w-full aspect-video"
+                >
+                  Tarayıcınız video oynatmayı desteklemiyor.
+                </video>
+              )}
             </div>
           </motion.div>
         </motion.div>
